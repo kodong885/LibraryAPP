@@ -25,8 +25,13 @@ public class User {
     public String getBorrowedBookName() {
         return this.borrowedBook.bookName;
     }
+
     public Book getBorrowedBook() {
         return this.borrowedBook;
+    }
+
+    public Boolean getBorrowAvailable() {
+        return this.borrowAvailable;
     }
 
     public void setUserBorrowedBook(Book book) {

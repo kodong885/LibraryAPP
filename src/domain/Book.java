@@ -24,6 +24,10 @@ public class Book {
         return this.bookId;
     }
 
+    public Boolean getLoanAvailable() {
+        return  this.loanAvailable;
+    }
+
     public void setBookLoanAvailable(Boolean bookLoanAvailable) {
         this.loanAvailable = bookLoanAvailable;
     }

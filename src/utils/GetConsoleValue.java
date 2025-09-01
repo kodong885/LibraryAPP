@@ -64,7 +64,7 @@ public class GetConsoleValue {
         while (true) {
             try {
                 System.out.println("userName >>");
-                String userName = scanner.nextLine(); // 234 또 "234"으로 받음!!
+                String userName = scanner.nextLine(); // 234도 "234"으로 받음!!
                 return userName;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
