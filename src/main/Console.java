@@ -43,7 +43,6 @@ public class Console {
                     }
                     Boolean allBookUnavailable = serviceLibrary.checkAllBookUnavailable(bookList);
                     if (allBookUnavailable) {
-                        // 이 borrow를 완전 끝내야함!!
                         System.out.println(String.format("You can't borrow '%s' !!", bookName));
                         break;
                     } else {
@@ -81,7 +80,7 @@ public class Console {
                                 }
                                 Boolean allUserUnavailable = serviceLibrary.checkAllUserUnavailable(userList);
                                 if (allUserUnavailable) {
-                                    // 다시 user 입력; ( 전체 유저가 입력 불가능 상태도 있음...! )
+                                    // 다시 user 입력;
                                 } else {
                                     Integer userListLengthForBorrow = userList.size();
                                     while (true) {
@@ -99,14 +98,14 @@ public class Console {
                                         } else {
                                             System.out.println("The book you picked can't be borrowed !");
                                             System.out.println("Please try again !");
-
                                         }
                                     }
+                                    break;
                                 }
                             }
                         }
                     }
-                  //  break; // 무소건 닿는데........
+                    break;
 
                 case "return" :
                     while (true) { // return 구문 예외 처리하기!!!!
@@ -115,10 +114,9 @@ public class Console {
                         userList = serviceLibrary.getUserListByUserName(userName);
                         if (userList.isEmpty()) {
                             System.out.println(String.format("'%s' is not in this App's Repo, Please try again", userName));
-                            break;
                         } else {
                             System.out.println(String.format("This is a userList that has userName %s", userName));
-                            for (int i = 0; i < userList.size(); i++) { // return 구문에도 마저 예외처리 해주기!!
+                            for (int i = 0; i < userList.size(); i++) {
                                 System.out.println(String.format("%d. name → %s / id → %d / loanAvailable → %b",
                                         i+1,
                                         userList.get(i).getUserName(),
@@ -126,6 +124,7 @@ public class Console {
                                         userList.get(i).getBorrowAvailable()
                                         ));
                             }
+                            break;
                         }
                     }
                     Boolean allUserUnavailableForReturn = serviceLibrary.checkAllUserUnavailable(userList);
@@ -153,11 +152,12 @@ public class Console {
                                         bookUserBorrowed.getBookName()
                                 );
                                 System.out.println(returnBookDoneMessage);
+                                break;
                             }
                         }
                     }
-                    // sign up 기능이 왜 없지......??
                     break;
+
 
                 case "stop" :
                     isRunning = false;

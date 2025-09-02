@@ -31,7 +31,7 @@ public class ServiceLibrary {
     public User chooseUserFromUserList(Integer userNum, String userName) { // error!!!!!
         UsersRepo usersRepo = new UsersRepo();
         List<User> users = usersRepo.getUserListByUserName(userName);
-        return  usersRepo.getUser(userNum, users);
+        return usersRepo.getUser(userNum, users);
     }
 
     public Book getBookUserBorrowed(User user) {
@@ -77,20 +77,19 @@ public class ServiceLibrary {
             return false;
         }
     }
+
+    public void borrowBook(Book book, User user) {
+        book.setBookLoanAvailable(false);
+        user.setUserBorrowedBook(book);
+        user.setUserBorrowAvailable(false);
+    }
+
+    public void returnBook(Book book, User user) {
+        book.setBookLoanAvailable(true);
+        user.setUserBorrowedBook(null);
+        user.setUserBorrowAvailable(true);
+    }
 }
 
-public void borrowBook(Book book, User user) {
-    book.setBookLoanAvailable(false);
-    user.setUserBorrowedBook(book);
-    user.setUserBorrowAvailable(false);
-}
-
-public void returnBook(Book book, User user) {
-    book.setBookLoanAvailable(true);
-    user.setUserBorrowedBook(null);
-    user.setUserBorrowAvailable(true);
-}
-
-}
 
 
