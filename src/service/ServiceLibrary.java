@@ -53,7 +53,7 @@ public class ServiceLibrary {
         for (int i = 0; i < bookList.size(); i++) {
             if (!bookList.get(i).getLoanAvailable()) {
                 // bookLoanAvailable ▶ false
-                i++;
+                bookNumLoanAvailable++; // 여기 수정함!! ( i → bookNumLoanAvailable )  → 테스트해봐야함!!!
             }
         }
         if (bookNumLoanAvailable == bookList.size()) {
@@ -68,7 +68,7 @@ public class ServiceLibrary {
         for (int i = 0; i < userList.size(); i++) {
             if (!userList.get(i).getBorrowAvailable()) {
                 // bookLoanAvailable ▶ false
-                i++;
+                userNumLoanAvailable++;
             }
         }
         if (userNumLoanAvailable == userList.size()) {

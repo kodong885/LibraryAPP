@@ -96,7 +96,9 @@ public class Console {
                                             System.out.println(borrowBookDoneMessage);
                                             break;
                                         } else {
-                                            System.out.println("The book you picked can't be borrowed !");
+                                            System.out.println(String.format("%s(%d) can't borrow !",
+                                                    userBorrowing.getUserName(),
+                                                    userNum));
                                             System.out.println("Please try again !");
                                         }
                                     }
