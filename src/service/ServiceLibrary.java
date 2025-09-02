@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ServiceLibrary {
 
-
     public List<Book> getBookListByBookName(String bookName) {
         BooksRepo booksRepo = new BooksRepo();
         List<Book> books = booksRepo.getBookListByBookName(bookName);
@@ -50,20 +49,47 @@ public class ServiceLibrary {
     }
 
     public Boolean checkAllBookUnavailable(List<Book> bookList) {
-        // bookList 내부, 모든 book이 Unavailable할 경우 확인
+        int bookNumLoanAvailable = 0;
+        for (int i = 0; i < bookList.size(); i++) {
+            if (!bookList.get(i).getLoanAvailable()) {
+                // bookLoanAvailable ▶ false
+                i++;
+            }
+        }
+        if (bookNumLoanAvailable == bookList.size()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void borrowBook(Book book, User user) {
-        book.setBookLoanAvailable(false);
-        user.setUserBorrowedBook(book);
-        user.setUserBorrowAvailable(false);
+    public Boolean checkAllUserUnavailable(List<User> userList) {
+        int userNumLoanAvailable = 0;
+        for (int i = 0; i < userList.size(); i++) {
+            if (!userList.get(i).getBorrowAvailable()) {
+                // bookLoanAvailable ▶ false
+                i++;
+            }
+        }
+        if (userNumLoanAvailable == userList.size()) {
+            return true;
+        } else {
+            return false;
+        }
     }
+}
 
-    public void returnBook(Book book, User user) {
-        book.setBookLoanAvailable(true);
-        user.setUserBorrowedBook(null);
-        user.setUserBorrowAvailable(true);
-    }
+public void borrowBook(Book book, User user) {
+    book.setBookLoanAvailable(false);
+    user.setUserBorrowedBook(book);
+    user.setUserBorrowAvailable(false);
+}
+
+public void returnBook(Book book, User user) {
+    book.setBookLoanAvailable(true);
+    user.setUserBorrowedBook(null);
+    user.setUserBorrowAvailable(true);
+}
 
 }
 
